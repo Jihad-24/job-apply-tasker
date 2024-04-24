@@ -1,5 +1,5 @@
 ## Tasker Application Documentation
-### Improved-Tasker `demo live link `[https://improved-tasker-rust.vercel.app/]
+### Improved-Tasker `demo live link `[https://job-apply-tasker.vercel.app/]
 ### -Setup Instructions
 
 ### Clone the Repository:
@@ -20,7 +20,7 @@
 
 ### Access the Application:
 
-    - Open your web browser and navigate to http://localhost:3000 or somthing to access the Tasker application or you can access the application with the demo live link [https://improved-tasker-rust.vercel.app/].
+    - Open your web browser and navigate to http://localhost:3000 or somthing to access the Tasker application or you can access the application with the demo live link [https://job-apply-tasker.vercel.app/].
 
 ### `npm run build`
 
