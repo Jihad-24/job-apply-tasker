@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import useApplication from "../../hooks/useApplication";
 import usePublicAxios from "../../hooks/usePublicAxios";
@@ -17,9 +18,9 @@ const TaskList = () => {
   // console.log(applicatios[0]);
 
   const handleEditTask = async (id) => {
-    console.log(id);
+    // console.log(id);
     const findTask = await application?.find((task) => task?._id == id);
-    console.log(findTask);
+    // console.log(findTask);
     setfindTask(findTask);
     setShowModal(true);
   };
@@ -45,6 +46,17 @@ const TaskList = () => {
         });
         refetch();
       }
+    }
+  };
+
+  const handleStatusTask = async (id) => {
+    // console.log(id);
+    const res = await publicAxios.patch(`/application/status/${id}`);
+    // console.log(res.data);
+    if (res.data.modifiedCount > 0) {
+      toast.success("Task Completed Successfully.");
+      setShowModal(false);
+      refetch();
     }
   };
 
@@ -92,6 +104,7 @@ const TaskList = () => {
                       task={task}
                       handleDelete={handleDelete}
                       handleEditTask={handleEditTask}
+                      handleStatusTask={handleStatusTask}
                     />
                   ))}
               </tbody>
