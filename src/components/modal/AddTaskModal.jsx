@@ -1,12 +1,20 @@
 /* eslint-disable react/prop-types */
 
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
 import usePublicAxios from "../../hooks/usePublicAxios";
 
 export default function AddTaskModal({ onClose, refetch, setAddShowModal }) {
+  const { user } = useAuth();
   const axiosPublic = usePublicAxios();
-  // setAddShowModal(true)
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleForm = async (e) => {
+    if (!user) {
+      navigate(location?.state ? location.state : "/login");
+      return;
+    }
     e.preventDefault();
     const form = event.target;
     const title = form.title.value;

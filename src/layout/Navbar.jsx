@@ -33,7 +33,9 @@ const Navbar = () => {
             {user ? (
               <>
                 <div className="">
-                  <h1>{user?.displayName ? user?.displayName : "User"}</h1>
+                  <h1 className="italic text-yellow-400">
+                    Hi, {user?.displayName ? user?.displayName : "User"}
+                  </h1>
                 </div>
                 <div className="dropdown  dropdown-end">
                   <div
