@@ -13,13 +13,13 @@ export default function AddTaskModal({ onClose, refetch, setAddShowModal }) {
     const description = form.description.value;
     const tags = form.tags.value.split(",").map((tag) => tag.trim());
     const priority = form.priority.value;
-    const status = 'ongoing';
+    const status = "ongoing";
     const newTask = {
       title,
       description,
       tags,
       priority,
-      status
+      status,
     };
     // console.log(newTask);
     const res = await axiosPublic.post(`/application`, newTask);
@@ -45,6 +45,7 @@ export default function AddTaskModal({ onClose, refetch, setAddShowModal }) {
               type="text"
               name="title"
               id="title"
+              required
             />
           </div>
 
@@ -55,6 +56,7 @@ export default function AddTaskModal({ onClose, refetch, setAddShowModal }) {
               type="text"
               name="description"
               id="description"
+              required
             ></textarea>
           </div>
 
@@ -66,21 +68,19 @@ export default function AddTaskModal({ onClose, refetch, setAddShowModal }) {
                 type="text"
                 name="tags"
                 id="tags"
+                required
               />
             </div>
 
             <div className="space-y-2 lg:space-y-3 mt-10">
-              <label htmlFor="priority">Priority</label>
-              <select
+              <label htmlFor="priority">Due Date</label>
+              <input
+                type="date"
                 className={`block w-full cursor-pointer rounded-md bg-[#2D323F] px-3 py-2.5`}
                 name="priority"
                 id="priority"
-              >
-                <option value="">Select Priority</option>
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
-              </select>
+                required
+              />
             </div>
           </div>
 

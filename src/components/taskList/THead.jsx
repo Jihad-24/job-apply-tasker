@@ -3,7 +3,7 @@ const THead = () => {
     <thead>
       <tr>
         <th className="p-4 pb-8 text-sm font-semibold capitalize w-[48px]" />
-        <th className="p-4 pb-8 text-sm font-semibold capitalize w-full md:w-[300px]">
+        <th className="p-4 pb-8 text-sm font-semibold capitalize w-full md:w-[250px]">
           {" "}
           Title{" "}
         </th>
@@ -11,13 +11,13 @@ const THead = () => {
           {" "}
           Description{" "}
         </th>
-        <th className="p-4 pb-8 text-sm font-semibold capitalize w-full md:w-[350px]">
+        <th className="p-4 pb-8 text-sm font-semibold capitalize w-full md:w-[300px]">
           {" "}
           Tags{" "}
         </th>
-        <th className="p-4 pb-8 text-sm font-semibold capitalize w-full md:w-[100px]">
+        <th className="p-4 pb-8 text-sm font-semibold capitalize w-[115px]">
           {" "}
-          Priority{" "}
+          Due Date{" "}
         </th>
         <th className="p-4 pb-8 text-sm font-semibold capitalize w-full md:w-[200px]">
           {" "}

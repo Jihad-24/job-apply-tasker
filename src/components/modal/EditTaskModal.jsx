@@ -79,18 +79,15 @@ export default function EditTaskModal({
             </div>
 
             <div className="space-y-2 lg:space-y-3 mt-10">
-              <label htmlFor="priority">Priority</label>
-              <select
+              <label htmlFor="priority">Due Date</label>
+              <input
+              type='date'
                 className={`block w-full cursor-pointer rounded-md bg-[#2D323F] px-3 py-2.5`}
                 name="priority"
                 id="priority"
                 defaultValue={findTask?.priority}
-              >
-                <option value="">Select Priority</option>
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
-              </select>
+              />
+               
             </div>
           </div>
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -119,7 +118,7 @@ const TaskCard = ({ task, handleDelete, handleEditTask, handleStatusTask }) => {
           </ul>
           {/* {task?.tags} */}
         </td>
-        <td className="text-center capitalize">{task?.priority}</td>
+        <td className="text-center text-xs md:text-sm">{task?.priority}</td>
         <td className="text-center">
           {task?.status === "ongoing" ? (
             <div className="flex flex-col md:flex-row  items-center justify-center gap-3">
