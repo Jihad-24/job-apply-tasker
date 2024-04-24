@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import useApplication from "../../hooks/useApplication";
@@ -13,14 +13,39 @@ const TaskList = () => {
   const publicAxios = usePublicAxios();
   const [showModal, setShowModal] = useState(false);
   const [addModal, setAddShowModal] = useState(false);
+  const [AllTask, setAllTask] = useState([]);
   const [findTask, setfindTask] = useState(false);
   const [application, refetch] = useApplication();
-  // console.log(applicatios[0]);
+  const [filteredTask, setFilteredTask] = useState([]);
+  const [filter, setFilter] = useState({
+    keyword: "",
+    sortBy: "",
+  });
+
+  useEffect(() => {
+    if (application?.length > 0) {
+      setAllTask(application);
+    }
+  }, [application]);
+
+  useEffect(() => {
+    const debounceFilter = setTimeout(() => {
+      let tempFilteredTask = [...AllTask];
+
+      if (filter.keyword) {
+        tempFilteredTask = tempFilteredTask?.filter((item) =>
+          item?.title?.toLowerCase()?.includes(filter?.keyword?.toLowerCase())
+        );
+      }
+
+      setFilteredTask(tempFilteredTask);
+    }, 600);
+    return () => clearTimeout(debounceFilter);
+  }, [filter, AllTask]);
 
   const handleEditTask = async (id) => {
-    // console.log(id);
     const findTask = await application?.find((task) => task?._id == id);
-    // console.log(findTask);
+
     setfindTask(findTask);
     setShowModal(true);
   };
@@ -84,7 +109,7 @@ const TaskList = () => {
           <div className="mb-14 items-center justify-between sm:flex">
             <h2 className="text-2xl font-semibold max-sm:mb-4">Your Tasks</h2>
             <div className="flex items-center space-x-5">
-              <SearchForm />
+              <SearchForm filter={filter} setFilter={setFilter} />
               <button
                 onClick={() => setAddShowModal(true)}
                 className="rounded-md bg-blue-500 px-3.5 py-2.5 text-sm font-semibold"
@@ -97,8 +122,8 @@ const TaskList = () => {
             <table className="table-fixed overflow-auto xl:w-full">
               <THead />
               <tbody>
-                {application?.length > 0 &&
-                  application?.map((task) => (
+                {filteredTask?.length > 0 &&
+                  filteredTask?.map((task) => (
                     <TaskCard
                       key={task._id}
                       task={task}
@@ -109,7 +134,7 @@ const TaskList = () => {
                   ))}
               </tbody>
             </table>
-            {application?.length < 1 && (
+            {filteredTask?.length < 1 && (
               <div className="flex flex-col gap-10 justify-end items-center  ">
                 <img
                   className="h-[500px] w-[500px]"
